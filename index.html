@@ -1,0 +1,32 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Express Server Example</title>
+</head>
+<body>
+    <h1>Hello from Express Server</h1>
+    <h1>API Integration Example</h1>
+    <div id="apiData"
+    ></div>
+
+    <script>
+        // Function to fetch data from an API
+        function fetchDataFromAPI() {
+            fetch('https://apps.des.qld.gov.au/species/?op=getkingdomnames&f=json')
+                .then(response => response.json())
+                .then(data => {
+                    // Process the data from the API
+                    const apiDataElement = document.getElementById('apiData');
+                    apiDataElement.innerHTML = `API Data: ${data.title}`;
+                })
+                .catch(error => {
+                    console.error('Error fetching data from API:', error);
+                });
+        }
+
+        // Call the API function when the page loads
+        fetchDataFromAPI();
+    </script>
+</body>
+</html>
